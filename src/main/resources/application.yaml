@@ -1,5 +1,14 @@
+spring:
+    application:
+      name:Product Microservice
+
 data:
     mongodb:
       host: lcoalhost
       port : 27017
       database : shopping
+
+product:
+    currencies:
+      -INR
+      -USD

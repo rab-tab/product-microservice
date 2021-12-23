@@ -1,25 +1,38 @@
 package com.example.productmicroservice.service;
 
 import com.example.productmicroservice.ProductRepository;
+import com.example.productmicroservice.config.ProductConfiguration;
 import com.example.productmicroservice.dto.Product;
+import com.example.productmicroservice.exception.CurrencyNotValidException;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
+@AllArgsConstructor
 @Slf4j
 @Service
 public class ProductService {
 
     private ProductRepository productRepository;
+    private ProductConfiguration productConfiguration;
     List<Product> products=new ArrayList<>();
+
 
     public String addProduct(Product product) {
         log.info("Adding product");
+        if(productConfiguration.getCurrencies().contains(product.getCurrency().toUpperCase()))
+        {
+            throw new CurrencyNotValidException("invalid currency");
+        }
         productRepository.save(product);
       //products.add(product);
         return "success";
