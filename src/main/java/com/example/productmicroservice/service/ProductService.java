@@ -2,6 +2,7 @@ package com.example.productmicroservice.service;
 
 import com.example.productmicroservice.ProductRepository;
 import com.example.productmicroservice.dto.Product;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,13 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class ProductService {
 
     private ProductRepository productRepository;
-
     List<Product> products=new ArrayList<>();
+
     public String addProduct(Product product) {
+        log.info("Adding product");
         productRepository.save(product);
       //products.add(product);
         return "success";
