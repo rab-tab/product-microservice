@@ -1,0 +1,5 @@
+data:
+    mongodb:
+      host: lcoalhost
+      port : 27017
+      database : shopping

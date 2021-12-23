@@ -37,7 +37,7 @@ public class ProductService {
     public String updateProduct(Product product) {
         for(Product prod:products)
         {
-            if(prod.getId()==product.getId())
+            if(prod.getId().equals(product.getId()))
             {
                 prod.setName(product.getName());
                 prod.setCategory(product.getCategory());
